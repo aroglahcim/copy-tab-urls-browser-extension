@@ -7,8 +7,14 @@ Store listing tab
 - Category: Workflow & Planning
 - Language: English (United States)
 - Store icon: icons/icon128.png
-- Screenshots, 1280x800: images/store/screenshot-selected-tabs.png,
-  images/store/screenshot-context-menu.png, images/store/screenshot-options.png
+- Screenshots, 1280x800, upload in this order because the store shows the first one largest:
+  1. images/store/screenshot-context-menu.png - the tab strip menu open on a Wikipedia tab with
+     Copy URL(s) visible, which is the whole action in one picture
+  2. images/store/screenshot-selected-tabs.png - the same menu with several tabs selected, so the
+     multi-tab part of the feature is visible
+  3. images/store/screenshot-options.png - the separator settings on the options page, currently
+     captured with Custom selected and an empty string, while the description calls new line the
+     default; recapture with New line selected if that reads as a contradiction
 - Small promo tile, 440x280: images/store/promo-small.png
 - Marquee promo tile, 1400x560: images/store/promo-marquee.png
 - Official URL / homepage: https://github.com/aroglahcim/copy-tab-urls-browser-extension

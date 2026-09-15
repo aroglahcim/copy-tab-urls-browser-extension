@@ -75,7 +75,7 @@ No `host_permissions`.
 
 Store assets live in `images/store/` (not shipped in the extension zip):
 
-- Screenshots: `screenshot-selected-tabs.png`, `screenshot-context-menu.png`, and `screenshot-options.png` (1280×800)
+- Screenshots (1280×800), in the upload order recommended in `store/listing-metadata.txt`: `screenshot-context-menu.png`, `screenshot-selected-tabs.png`, `screenshot-options.png`
 - Small promo tile: `promo-small.png` (440×280)
 - Marquee: `promo-marquee.png` (1400×560)
 
