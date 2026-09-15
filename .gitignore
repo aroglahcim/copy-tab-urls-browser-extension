@@ -1,0 +1,3 @@
+.worktrees/
+*.zip
+node_modules/
