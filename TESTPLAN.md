@@ -1,6 +1,6 @@
 # Copy Tab URL(s) — Manual test plan
 
-Use a throwaway Chrome profile. Load unpacked from the repository root. Chrome 150+ required.
+Use a throwaway Chrome profile. Load unpacked from the `extension/` directory. Chrome 150+ required.
 
 ## Prerequisites
 

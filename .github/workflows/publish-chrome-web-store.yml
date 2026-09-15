@@ -129,9 +129,9 @@ jobs:
           tag_name="${{ needs.release.outputs.tag || github.event.ref }}"
           tag_name="${tag_name#refs/tags/}"
           tag_version="${tag_name#v}"
-          manifest_version="$(jq -r '.version' manifest.json)"
+          manifest_version="$(jq -r '.version' extension/manifest.json)"
           if [ "$tag_version" != "$manifest_version" ]; then
-            echo "Tag $tag_name (v$tag_version) does not match manifest.json version ($manifest_version)" >&2
+            echo "Tag $tag_name (v$tag_version) does not match extension/manifest.json version ($manifest_version)" >&2
             exit 1
           fi
 

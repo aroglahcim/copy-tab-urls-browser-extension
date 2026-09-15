@@ -6,7 +6,7 @@ Store listing tab
 - Description: store/description.txt (16000 characters max)
 - Category: Workflow & Planning
 - Language: English (United States)
-- Store icon: icons/icon128.png
+- Store icon: extension/icons/icon128.png
 - Screenshots, 1280x800, upload in this order because the store shows the first one largest:
   1. images/store/screenshot-context-menu.png - the tab strip menu open on a Wikipedia tab with
      Copy URL(s) visible, which is the whole action in one picture
@@ -31,7 +31,7 @@ Distribution tab
 - Regions: all
 - Pricing: free
 
-The dashboard pre-fills Summary from manifest.json "description"; replace it with
+The dashboard pre-fills Summary from extension/manifest.json "description"; replace it with
 store/summary.txt. The manifest value stays the shorter text that Chrome shows in the extension
 management UI.
 

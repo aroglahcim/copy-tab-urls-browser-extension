@@ -1,7 +1,7 @@
-import { DEFAULT_SETTINGS, resolveSeparator } from './settings.js';
+import { DEFAULT_SETTINGS, resolveSeparator } from '../lib/settings.js';
 
 const MENU_ID = 'copy-tab-urls';
-const OFFSCREEN_PATH = 'offscreen.html';
+const OFFSCREEN_PATH = 'offscreen/offscreen.html';
 
 browser.runtime.onInstalled.addListener(() => {
   browser.contextMenus.create({

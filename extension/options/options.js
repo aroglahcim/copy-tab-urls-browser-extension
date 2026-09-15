@@ -1,4 +1,4 @@
-import { DEFAULT_SETTINGS } from './settings.js';
+import { DEFAULT_SETTINGS } from '../lib/settings.js';
 
 const ALLOWED_PRESETS = ['newline', 'space', 'comma', 'semicolon', 'custom'];
 const customInput = document.getElementById('customSeparator');

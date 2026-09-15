@@ -1,4 +1,4 @@
-One block per permission declared in manifest.json. Paste each block into the matching
+One block per permission declared in extension/manifest.json. Paste each block into the matching
 justification field on the Privacy practices tab.
 
 === contextMenus ===
