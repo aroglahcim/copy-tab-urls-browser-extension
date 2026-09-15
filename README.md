@@ -2,6 +2,8 @@
 
 Chrome extension (Manifest V3) that copies URLs of **selected tabs** from the tab strip context menu. Settings sync across signed-in Chrome profiles via `browser.storage.sync`.
 
+Licensed under the [MIT License](./LICENSE).
+
 Requires **Chrome 150+** (`contexts: ["tab"]`).
 
 ## What it does
