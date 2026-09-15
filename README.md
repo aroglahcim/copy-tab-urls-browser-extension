@@ -17,14 +17,14 @@ sequenceDiagram
   participant TabStrip
   participant SW as serviceWorker
   participant Sync as storageSync
-  participant Off as offscreenDoc
+  participant OSD as offscreenDoc
 
   User->>TabStrip: select tabs, Copy URL(s)
   TabStrip->>SW: browser.contextMenus.onClicked
   SW->>SW: tabs.query highlighted plus windowId
   SW->>Sync: get separatorPreset / customSeparator
-  SW->>Off: createDocument CLIPBOARD plus postMessage
-  Off->>User: clipboard
+  SW->>OSD: createDocument CLIPBOARD plus postMessage
+  OSD->>User: clipboard
 ```
 
 The click callback receives only the tab that was right-clicked. The extension then queries every highlighted tab in that window.
