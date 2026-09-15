@@ -1,0 +1,37 @@
+{
+  "branches": ["main"],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/npm",
+      {
+        "npmPublish": false
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "jq --arg version ${nextRelease.version} '.version = $version' manifest.json > manifest.json.tmp && mv manifest.json.tmp manifest.json && bash scripts/pack-extension.sh"
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": ["manifest.json", "package.json", "package-lock.json"],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "assets": [
+          {
+            "path": "copy-tab-urls.zip",
+            "label": "Chrome Web Store package"
+          }
+        ]
+      }
+    ]
+  ]
+}

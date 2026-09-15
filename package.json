@@ -1,0 +1,17 @@
+{
+  "name": "copy-tab-urls",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chrome extension — copy URLs of selected tabs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aroglahcim/copy-tab-urls-browser-extension.git"
+  },
+  "devDependencies": {
+    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/git": "^10.0.0",
+    "@semantic-release/github": "^12.0.0",
+    "@semantic-release/npm": "^13.0.0",
+    "semantic-release": "^25.0.0"
+  }
+}

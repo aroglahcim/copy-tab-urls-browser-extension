@@ -1,0 +1,149 @@
+# Publish Copy Tab URL(s) to the Chrome Web Store.
+# Uses https://github.com/semantic-release/semantic-release and
+# https://github.com/marketplace/actions/publish-chrome-extension-to-chrome-web-store
+#
+# The GitHub Release includes copy-tab-urls.zip (runtime files only). The
+# publish job uploads that same asset to the Chrome Web Store.
+#
+# Triggers:
+#   - Push to main — semantic-release analyzes commits; publish runs in the same
+#     workflow when a new release tag is created
+#   - workflow_dispatch — run semantic-release manually; publish follows when a
+#     new tag is created
+#   - Create a version tag (v*) manually — pack, attach the zip to the GitHub
+#     Release, then publish (tags pushed by github-actions[bot] are ignored to
+#     avoid duplicate uploads)
+#
+# Repository secrets (Settings → Secrets and variables → Actions):
+#   CHROME_WEB_STORE_CLIENT_ID
+#   CHROME_WEB_STORE_CLIENT_SECRET
+#   CHROME_WEB_STORE_REFRESH_TOKEN
+#
+# Repository variables:
+#   CHROME_EXTENSION_ID
+#
+# Credentials: https://developer.chrome.com/docs/webstore/using_webstore_api
+
+name: Publish to Chrome Web Store
+
+on:
+  push:
+    branches:
+      - main
+  create:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    outputs:
+      published: ${{ steps.released.outputs.published }}
+      tag: ${{ steps.released.outputs.tag }}
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+          lfs: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install release tooling
+        run: npm ci
+
+      - name: Run semantic-release
+        id: semantic
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          before_tag="$(git tag -l 'v*' | sort -V | tail -1 || true)"
+          echo "before_tag=$before_tag" >> "$GITHUB_ENV"
+          npx semantic-release
+
+      - name: Detect release
+        id: released
+        if: steps.semantic.outcome == 'success'
+        run: |
+          set -euo pipefail
+          after_tag="$(git tag -l 'v*' | sort -V | tail -1 || true)"
+          if [ -n "$after_tag" ] && [ "$after_tag" != "${before_tag:-}" ]; then
+            echo "published=true" >> "$GITHUB_OUTPUT"
+            echo "tag=$after_tag" >> "$GITHUB_OUTPUT"
+          else
+            echo "published=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  publish:
+    needs: release
+    if: |
+      always() &&
+      (
+        (needs.release.result == 'success' && needs.release.outputs.published == 'true') ||
+        (
+          needs.release.result == 'skipped' &&
+          github.event_name == 'create' &&
+          github.ref_type == 'tag' &&
+          startsWith(github.event.ref, 'v') &&
+          github.event.sender.login != 'github-actions[bot]'
+        )
+      )
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.release.outputs.tag || github.event.ref }}
+          lfs: true
+
+      - name: Verify tag matches manifest version
+        run: |
+          set -euo pipefail
+          tag_name="${{ needs.release.outputs.tag || github.event.ref }}"
+          tag_name="${tag_name#refs/tags/}"
+          tag_version="${tag_name#v}"
+          manifest_version="$(jq -r '.version' manifest.json)"
+          if [ "$tag_version" != "$manifest_version" ]; then
+            echo "Tag $tag_name (v$tag_version) does not match manifest.json version ($manifest_version)" >&2
+            exit 1
+          fi
+
+      - name: Obtain runtime package
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          tag_name="${{ needs.release.outputs.tag || github.event.ref }}"
+          tag_name="${tag_name#refs/tags/}"
+          chmod +x scripts/pack-extension.sh
+          if gh release download "$tag_name" --pattern 'copy-tab-urls.zip'; then
+            echo "Downloaded copy-tab-urls.zip from GitHub Release $tag_name"
+          else
+            bash scripts/pack-extension.sh
+            gh release upload "$tag_name" copy-tab-urls.zip --clobber
+          fi
+          unzip -l copy-tab-urls.zip
+
+      - name: Upload to Chrome Web Store
+        uses: mobilefirstllc/cws-publish@2.1.1
+        with:
+          action: upload
+          client_id: ${{ secrets.CHROME_WEB_STORE_CLIENT_ID }}
+          client_secret: ${{ secrets.CHROME_WEB_STORE_CLIENT_SECRET }}
+          refresh_token: ${{ secrets.CHROME_WEB_STORE_REFRESH_TOKEN }}
+          extension_id: ${{ vars.CHROME_EXTENSION_ID }}
+          zip_file: copy-tab-urls.zip
