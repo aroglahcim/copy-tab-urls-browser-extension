@@ -1,6 +1,6 @@
 {
   "name": "copy-tab-urls",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Chrome extension — copy URLs of selected tabs",
   "repository": {
