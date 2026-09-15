@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Copy Tab URL(s) options</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Copy Tab URL(s)</h1>
+      <p>
+        Choose how URLs of selected tabs are joined when you pick
+        <strong>Copy URL(s)</strong> from the tab strip context menu.
+      </p>
+
+      <fieldset>
+        <legend>Separator</legend>
+        <label>
+          <input type="radio" name="separatorPreset" value="newline" checked />
+          New line
+        </label>
+        <label>
+          <input type="radio" name="separatorPreset" value="space" />
+          Space
+        </label>
+        <label>
+          <input type="radio" name="separatorPreset" value="comma" />
+          Comma
+        </label>
+        <label>
+          <input type="radio" name="separatorPreset" value="semicolon" />
+          Semicolon
+        </label>
+        <label>
+          <input type="radio" name="separatorPreset" value="custom" />
+          Custom
+        </label>
+        <label class="custom-field">
+          Custom string
+          <input type="text" id="customSeparator" autocomplete="off" disabled />
+        </label>
+      </fieldset>
+
+      <p id="status" role="status"></p>
+    </main>
+    <script type="module" src="options.js"></script>
+  </body>
+</html>
