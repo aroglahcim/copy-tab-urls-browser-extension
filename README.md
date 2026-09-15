@@ -48,6 +48,8 @@ Open **Details → Extension options** (or right-click the extension → **Optio
 
 ![Options page](images/ss_options.png)
 
+![Multiple selected tabs](images/ss_selected_tabs.png)
+
 ![Tab strip context menu](images/ss_context_menu.png)
 
 ## Local installation
@@ -73,7 +75,7 @@ No `host_permissions`.
 
 Store assets live in `images/store/` (not shipped in the extension zip):
 
-- Screenshots: `screenshot-context-menu.png` and `screenshot-options.png` (1280×800)
+- Screenshots: `screenshot-selected-tabs.png`, `screenshot-context-menu.png`, and `screenshot-options.png` (1280×800)
 - Small promo tile: `promo-small.png` (440×280)
 - Marquee: `promo-marquee.png` (1400×560)
 
