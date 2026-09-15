@@ -15,6 +15,8 @@
 #     avoid duplicate uploads)
 #
 # Repository secrets (Settings → Secrets and variables → Actions):
+#   RELEASE_TOKEN — fine-grained PAT owned by a repository admin; semantic-release
+#     uses it to push chore(release) commits and tags through the Protect main ruleset
 #   CHROME_WEB_STORE_CLIENT_ID
 #   CHROME_WEB_STORE_CLIENT_SECRET
 #   CHROME_WEB_STORE_REFRESH_TOKEN
@@ -48,12 +50,23 @@ jobs:
       issues: write
       pull-requests: write
     steps:
+      - name: Require release token
+        env:
+          RELEASE_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ -z "$RELEASE_TOKEN" ]; then
+            echo 'Missing RELEASE_TOKEN. Add a fine-grained PAT with Contents read/write for this repository.' >&2
+            exit 1
+          fi
+
       - name: Checkout
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
           persist-credentials: false
           lfs: true
+          token: ${{ secrets.RELEASE_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -67,7 +80,7 @@ jobs:
       - name: Run semantic-release
         id: semantic
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         run: |
           before_tag="$(git tag -l 'v*' | sort -V | tail -1 || true)"
           echo "before_tag=$before_tag" >> "$GITHUB_ENV"
