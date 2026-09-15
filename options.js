@@ -1,6 +1,7 @@
 import { DEFAULT_SETTINGS } from './settings.js';
 
 const ALLOWED_PRESETS = ['newline', 'space', 'comma', 'semicolon', 'custom'];
+const customInput = document.getElementById('customSeparator');
 const statusEl = document.getElementById('status');
 let statusTimer;
 
