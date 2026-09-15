@@ -1,0 +1,3 @@
+The extension has a single purpose: copying the URLs of the tabs a user selects in the Chrome tab strip to the clipboard.
+
+Everything it ships serves that action. A context menu item on the tab strip triggers the copy, an options page lets the user pick the separator used to join the URLs, and an offscreen document performs the clipboard write. There is no other feature, no content script, and no network activity.

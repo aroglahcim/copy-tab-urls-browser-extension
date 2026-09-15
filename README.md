@@ -71,13 +71,26 @@ Open **Details → Extension options** (or right-click the extension → **Optio
 
 No `host_permissions`.
 
-## Chrome Web Store listing images
+## Chrome Web Store listing assets
 
 Store assets live in `images/store/` (not shipped in the extension zip):
 
 - Screenshots: `screenshot-selected-tabs.png`, `screenshot-context-menu.png`, and `screenshot-options.png` (1280×800)
 - Small promo tile: `promo-small.png` (440×280)
 - Marquee: `promo-marquee.png` (1400×560)
+
+Listing copy lives in `store/`, one file per dashboard field, ready to paste verbatim:
+
+| File | Dashboard field |
+|------|-----------------|
+| `name.txt` | Store listing → Item name |
+| `summary.txt` | Store listing → Summary (132 char limit) |
+| `description.txt` | Store listing → Description |
+| `listing-metadata.txt` | Category, language, URLs, asset mapping |
+| `single-purpose.txt` | Privacy practices → Single purpose |
+| `permission-justifications.txt` | Privacy practices → per-permission and remote code |
+| `data-usage.txt` | Privacy practices → data collection and certifications |
+| `privacy-policy.txt` | Text to publish, then link as Privacy policy URL |
 
 ## Chrome Web Store release
 

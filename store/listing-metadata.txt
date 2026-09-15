@@ -1,0 +1,33 @@
+Values for the non-prose fields of the Chrome Web Store developer dashboard.
+
+Store listing tab
+- Item name: store/name.txt (75 characters max; current value 15)
+- Summary: store/summary.txt (132 characters max, plain text; current value 99)
+- Description: store/description.txt (16000 characters max)
+- Category: Workflow & Planning
+- Language: English (United States)
+- Store icon: icons/icon128.png
+- Screenshots, 1280x800: images/store/screenshot-selected-tabs.png,
+  images/store/screenshot-context-menu.png, images/store/screenshot-options.png
+- Small promo tile, 440x280: images/store/promo-small.png
+- Marquee promo tile, 1400x560: images/store/promo-marquee.png
+- Official URL / homepage: https://github.com/aroglahcim/copy-tab-urls-browser-extension
+- Support URL: https://github.com/aroglahcim/copy-tab-urls-browser-extension/issues
+
+Privacy practices tab
+- Single purpose: store/single-purpose.txt
+- Permission justifications and remote code: store/permission-justifications.txt
+- Data collection and certifications: store/data-usage.txt
+- Privacy policy URL: publish store/privacy-policy.txt at a public URL and paste it here
+
+Distribution tab
+- Visibility: Public
+- Regions: all
+- Pricing: free
+
+The dashboard pre-fills Summary from manifest.json "description"; replace it with
+store/summary.txt. The manifest value stays the shorter text that Chrome shows in the extension
+management UI.
+
+store/ is listing material only. scripts/pack-extension.sh names the shipped files explicitly, so
+these texts never reach the uploaded zip.

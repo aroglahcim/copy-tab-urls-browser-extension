@@ -1,0 +1,16 @@
+Data collection disclosure for the Privacy practices tab.
+
+Collected data categories: none. Leave every category unchecked.
+
+Rationale, if a reviewer asks:
+The extension reads the url of the tabs the user selected, joins those URLs into one string, and
+writes that string to the clipboard. The URLs live in memory for the duration of that single
+action and are never persisted, aggregated, or sent anywhere. The extension makes no network
+requests and has no host permissions. The only persisted value is the user's separator preference
+(a preset name and an optional custom string) in storage.sync, which contains no personal or
+browsing data.
+
+Certifications, all three to be confirmed:
+- I do not sell or transfer user data to third parties, outside of the approved use cases.
+- I do not use or transfer user data for purposes that are unrelated to my item's single purpose.
+- I do not use or transfer user data to determine creditworthiness or for lending purposes.

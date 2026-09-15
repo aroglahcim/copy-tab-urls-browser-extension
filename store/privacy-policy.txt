@@ -1,0 +1,34 @@
+Privacy policy for Copy Tab URL(s)
+
+Last updated: 2026-09-15
+
+Copy Tab URL(s) does not collect, store, or transmit personal data.
+
+What the extension does with your data
+
+When you choose Copy URL(s) from the tab strip context menu, the extension reads the addresses of
+the tabs you selected in that window, joins them with your chosen separator, and writes the
+result to your clipboard. Those addresses are held in memory only for the length of that single
+action.
+
+What the extension stores
+
+Your separator preference: a preset name (new line, space, comma, semicolon, or custom) and, if
+you chose custom, the string you typed. It is saved with the Chrome storage.sync API, which means
+Chrome may synchronise it between browser profiles you are signed in to. Nothing else is stored.
+
+What the extension never does
+
+- It does not read the content of any web page.
+- It does not make network requests; it has no server and no analytics.
+- It does not sell or share data with third parties, because it holds no data to share.
+- It does not read your clipboard.
+
+Permissions
+
+The extension requests contextMenus, tabs, storage, offscreen, and clipboardWrite, and no host
+permissions. Each is used only for the copy action described above.
+
+Contact
+
+Questions and reports: https://github.com/aroglahcim/copy-tab-urls-browser-extension/issues

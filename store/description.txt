@@ -1,0 +1,31 @@
+Copy Tab URL(s) adds one item to the Chrome tab strip context menu: Copy URL(s). Select any number of tabs, right-click one of them, and the URLs of every selected tab land on your clipboard in tab order, joined by the separator you picked.
+
+Main features
+
+- Copies the URLs of all selected tabs, not only the tab you right-clicked.
+- Choose how the URLs are joined: new line (default), space, comma, semicolon, or any custom string.
+- Your separator choice syncs to every Chrome profile you are signed in to.
+- Lives in the tab strip menu, so there is no popup to open and no shortcut to remember.
+- Reads tab URLs only at the moment you click the menu item, and never reads page content.
+- No accounts, no tracking, no servers. Nothing leaves your browser.
+
+How to use it
+
+1. Select one or more tabs with Shift-click or Cmd-click / Ctrl-click.
+2. Right-click any of the selected tabs.
+3. Choose Copy URL(s).
+4. Paste the list wherever you need it.
+
+Changing the separator
+
+Open chrome://extensions, find Copy Tab URL(s), then Details and Extension options. Pick a preset or type your own string, including an empty one. Changes are saved immediately.
+
+Typical uses
+
+Share a set of reference tabs in a chat message, paste a research session into your notes, hand a list of pages to a colleague, or collect links for a ticket without copying them one tab at a time.
+
+Requirements
+
+Chrome 150 or newer, because tab strip context menu items need that version.
+
+Source code and issue tracker: https://github.com/aroglahcim/copy-tab-urls-browser-extension
