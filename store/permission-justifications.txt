@@ -1,0 +1,29 @@
+One block per permission declared in manifest.json. Paste each block into the matching
+justification field on the Privacy practices tab.
+
+=== contextMenus ===
+The extension's only entry point is a Copy URL(s) item in the tab strip context menu. Without
+contextMenus there is no way for the user to invoke the copy action.
+
+=== tabs ===
+The copy action needs the url property of the tabs the user selected. The extension calls
+tabs.query({ highlighted: true, windowId }) inside the context menu click handler, uses the
+returned URLs to build the clipboard text, and keeps nothing afterwards.
+
+=== storage ===
+Stores the user's separator choice (a preset name and an optional custom string) in
+storage.sync, so the preference survives restarts and follows the user's signed-in Chrome
+profiles. No tab data or browsing history is stored.
+
+=== offscreen ===
+A service worker has no DOM and therefore cannot write to the clipboard. The extension opens a
+hidden offscreen document with reason CLIPBOARD, writes the joined URLs there, and closes it
+immediately after the copy.
+
+=== clipboardWrite ===
+The result of the action is the joined list of selected tab URLs placed on the clipboard. The
+extension only writes; it never reads clipboard contents.
+
+=== Remote code ===
+The extension does not use remote code. All JavaScript is included in the uploaded package; there
+is no eval of remote strings, no remotely hosted script, and no WebAssembly.
