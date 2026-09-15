@@ -59,7 +59,7 @@ Open **Details → Extension options** (or right-click the extension → **Optio
 1. Open Chrome → `chrome://extensions`
 2. Enable **Developer mode**
 3. Click **Load unpacked**
-4. Select this repository root (or the linked worktree you are developing in)
+4. Select the `extension/` directory (or the linked worktree you are developing in)
 
 ## Permissions
 
@@ -98,7 +98,7 @@ Listing copy lives in `store/`, one file per dashboard field, ready to paste ver
 
 semantic-release https://github.com/semantic-release/semantic-release versions from Conventional Commits https://www.conventionalcommits.org/ on `main`. A release:
 
-1. Bumps `manifest.json` / `package.json`
+1. Bumps `extension/manifest.json` / `package.json`
 2. Builds `copy-tab-urls.zip` with **runtime files only** (`scripts/pack-extension.sh`)
 3. Attaches that zip to the GitHub Release (in addition to GitHub’s source archives)
 4. Uploads the **same** zip to the Chrome Web Store as a draft
@@ -113,6 +113,15 @@ Setup:
 Tag pushes use `upload` (draft in the developer console; you publish manually). Uses mobilefirstllc/cws-publish https://github.com/marketplace/actions/publish-chrome-extension-to-chrome-web-store.
 
 The publish job fails until those secrets and the extension ID exist. The GitHub Release zip is still created by the release job.
+
+## Repository layout
+
+| Path | Purpose |
+|------|---------|
+| `extension/` | Manifest V3 runtime (manifest, JS, HTML, CSS, icons) loaded by Chrome and packed into `copy-tab-urls.zip` |
+| `images/` | README and Chrome Web Store screenshots |
+| `store/` | Chrome Web Store listing copy (not shipped in the zip) |
+| `scripts/` | Release packaging helpers |
 
 ## Development notes
 
