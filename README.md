@@ -118,12 +118,7 @@ The publish job fails until those secrets and the extension ID exist. The GitHub
 
 | Path | Purpose |
 |------|---------|
-| `extension/` | Manifest V3 runtime loaded by Chrome and packed into `copy-tab-urls.zip` |
-| `extension/background/` | Service worker |
-| `extension/lib/` | Shared settings helpers |
-| `extension/options/` | Options page |
-| `extension/offscreen/` | Hidden clipboard document |
-| `extension/icons/` | Extension icons |
+| `extension/` | Manifest V3 runtime (manifest, JS, HTML, CSS, icons) loaded by Chrome and packed into `copy-tab-urls.zip` |
 | `images/` | README and Chrome Web Store screenshots |
 | `store/` | Chrome Web Store listing copy (not shipped in the zip) |
 | `scripts/` | Release packaging helpers |

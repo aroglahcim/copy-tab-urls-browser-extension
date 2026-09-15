@@ -10,13 +10,13 @@ rm -f "$root/$zip_name"
   cd "$extension_dir"
   zip -r "$root/$zip_name" \
     manifest.json \
-    background/service-worker.js \
-    lib/settings.js \
-    options/options.html \
-    options/options.js \
-    options/options.css \
-    offscreen/offscreen.html \
-    offscreen/offscreen.js \
+    service-worker.js \
+    settings.js \
+    options.html \
+    options.js \
+    options.css \
+    offscreen.html \
+    offscreen.js \
     icons/icon16.png \
     icons/icon32.png \
     icons/icon48.png \
