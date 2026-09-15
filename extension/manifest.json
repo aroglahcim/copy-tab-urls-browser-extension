@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Copy Tab URL(s)",
   "description": "Copy URLs of selected tabs from the tab strip context menu.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "minimum_chrome_version": "150",
   "icons": {
     "16": "icons/icon16.png",
